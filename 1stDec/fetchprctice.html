@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Data from Website</h2>
+    <button onclick="display()">Get the data</button>
+    <ul id="todolist"></ul>
+    <script>
+    async function display() {
+        try{
+            // fetch("https://jsonplaceholder.typicode/todos",{
+        //    method: "GET",})
+
+          const responce = await fetch("https://jsonplaceholder.typicode/todos")
+        
+          const data = await responce.json()
+          appendata(data);
+        // .then(response=>response.json())
+        // console.log(response)
+        // .then((data)=>{
+        //     appendata(data);
+        // })
+        }
+        
+
+        .catch((error)=>{
+            console.log("error");
+        });
+    }
+    function appendata(tdo){
+        const l = document.getElementById("todolist");
+        tdo.forEach(element => {
+            const li=document.createElement("li");
+            li.textContent=`${element.title}`;
+            l.appendChild(li);
+            
+        });
+    }
+    </script>
+</body>
+</html>
